@@ -1,4 +1,4 @@
-Name:           poppler
+Name:           poppler-gtk3
 Version:        0.12.3
 License:        GPL-2
 License-file:   COPYING
@@ -40,10 +40,10 @@ Source-Repository head
 
 flag gtk3
   description: compile with gtk3
-  default: False
+  default: True
 
 Library
-        build-depends:  base >= 4 && < 5, array, containers, 
+        build-depends:  base >= 4 && < 5, array, containers,
                         mtl, bytestring,
                         glib >= 0.12 && < 0.13,
                         cairo >= 0.12 && < 0.13
@@ -52,7 +52,7 @@ Library
         else
           build-depends: gtk >= 0.12 && < 0.13
         build-tools:    gtk2hsC2hs, gtk2hsHookGenerator, gtk2hsTypeGen
-						
+
         exposed-modules:
           Graphics.UI.Gtk.Poppler.Action
           Graphics.UI.Gtk.Poppler.Attachment
@@ -67,10 +67,10 @@ Library
           Graphics.UI.Gtk.Poppler.Types
 
         extensions:     ForeignFunctionInterface
-		
+
         include-dirs:   .
         x-c2hs-Header:  glib/poppler.h
-        if flag(gtk3) 
+        if flag(gtk3)
           pkgconfig-depends: poppler-glib >= 0.12.4, cairo >= 1.2.0, gdk-3.0, pango
         else
           pkgconfig-depends: poppler-glib >= 0.12.4, gobject-2.0, glib-2.0, cairo >= 1.2.0, gdk-2.0, gdk-pixbuf-2.0, pango
